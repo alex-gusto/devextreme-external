@@ -16,15 +16,16 @@
     "css-loader": "^6.6.0",
     "del": "^6.0.0",
     "fast-glob": "^3.2.11",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean": "^0.4.0",
+    "gulp-uglify": "^3.0.2",
     "html-webpack-plugin": "^5.5.0",
     "style-loader": "^3.3.1",
     "webpack": "^5.69.1",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4",
-    "webpack-stream": "^7.0.0",
-    "gulp": "^4.0.2",
-    "gulp-babel": "^8.0.0",
-    "gulp-clean": "^0.4.0"
+    "webpack-stream": "^7.0.0"
   },
   "dependencies": {
     "devextreme": "^21.2.5",

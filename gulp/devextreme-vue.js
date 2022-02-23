@@ -31,7 +31,7 @@ const webpackConfig = {
   externals: ["vue", /^devextreme\//],
 };
 
-task("devextreme-vue:clean", async () => {
+task("devextreme-vue:clean", () => {
   return del([distFolder]);
 });
 
@@ -54,4 +54,4 @@ task("devextreme-vue:build", async () => {
     .pipe(dest(distFolder));
 });
 
-module.exports = series("devextreme-vue:clean", "devextreme-vue:build");
+module.exports = () => series("devextreme-vue:clean", "devextreme-vue:build");
