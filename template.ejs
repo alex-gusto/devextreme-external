@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Externalize DevExtreme</title>
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "vue": "https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js",
+          "devextreme/events": "/devextreme/events/index.js",
+          "devextreme/": "/devextreme/",
+          "@devextreme/runtime/inferno": "/devextreme-runtime/inferno/index.js",
+          "devextreme-vue/": "/devextreme-vue/",
+          "inferno": "https://unpkg.com/inferno@latest/dist/inferno.min.js",
+          "inferno-create-element": "https://unpkg.com/inferno-create-element@7.4.11/dist/inferno-create-element.min.js",
+          "@babel/": "/babel/",
+          "main": "/main.js"
+        }
+      }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/system.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/amd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/use-default.js"></script>
+
+    <script>
+      (function () {
+        const endsWithFileExtension = /\/?\.[a-zA-Z]{2}$/;
+        const originalResolve = System.constructor.prototype.resolve;
+        System.constructor.prototype.resolve = function () {
+          // apply original resolve to make sure importmaps are resolved first
+          const url = originalResolve.apply(this, arguments);
+          // append .js file extension if url is missing a file extension
+          return endsWithFileExtension.test(url) ? url : url + ".js";
+        };
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      System.import('devextreme-vue/commons').then(() => {
+        System.import("main");
+      })
+    </script>
+  </body>
+</html>
