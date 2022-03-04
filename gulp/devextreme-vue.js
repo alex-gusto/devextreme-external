@@ -36,7 +36,7 @@ task("devextreme-vue:clean", () => {
 });
 
 task("devextreme-vue:build", async () => {
-  const entryPathes = await fg(srcFolder, { dot: true });
+  const entryPathes = await fg(srcFolder);
   const entry = entryPathes.reduce((acc, path) => {
     const match = path.match(/[a-z-]+\.js$/);
     const [fileName] = match;

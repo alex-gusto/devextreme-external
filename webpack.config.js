@@ -12,8 +12,14 @@ module.exports = {
   },
   devServer: {
     static: ["./dist", "./public"],
+    proxy: {
+      "/api": {
+        target: "http://localhost:8081",
+        pathRewrite: { "^/api": "" },
+      },
+    },
   },
-  externals: ["vue", /devextreme-vue/, /devextreme/],
+  externals: ["vue", "vue-ts", /devextreme(-vue)?\//],
   output: {
     filename: "main.js",
     path: path.resolve(__dirname, "dist"),

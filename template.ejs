@@ -3,6 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <title>Externalize DevExtreme</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn3.devexpress.com/jslib/21.2.5/css/dx.light.css"
+    />
+
     <script type="systemjs-importmap">
       {
         "imports": {
@@ -14,18 +19,19 @@
           "inferno": "https://unpkg.com/inferno@latest/dist/inferno.min.js",
           "inferno-create-element": "https://unpkg.com/inferno-create-element@7.4.11/dist/inferno-create-element.min.js",
           "@babel/": "/babel/",
-          "main": "/main.js"
+          "jszip": "https://unpkg.com/jszip@3.7.1/dist/jszip.min.js",
+          "main": "/main.js",
+          "vue-ts": "/api/js/app.js"
         }
       }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/system.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/amd.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/use-default.js"></script>
 
     <script>
       (function () {
-        const endsWithFileExtension = /\/?\.[a-zA-Z]{2}$/;
+        const endsWithFileExtension = /\/?\.[a-zA-Z]{2,3}$/;
         const originalResolve = System.constructor.prototype.resolve;
         System.constructor.prototype.resolve = function () {
           // apply original resolve to make sure importmaps are resolved first
@@ -38,10 +44,11 @@
   </head>
   <body>
     <div id="app"></div>
+    <div id="app2"></div>
     <script>
-      System.import('devextreme-vue/commons').then(() => {
+      System.import("devextreme-vue/commons").then(() => {
         System.import("main");
-      })
+      });
     </script>
   </body>
 </html>
